@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Find Shortest Route</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>Start Pincode:</label>
+        <input type="text" name="start" required>
+
+        <label>End Pincode:</label>
+        <input type="text" name="end" required>
+
+        <button type="submit">Find Route</button>
+    </form>
+
+    {% if result %}
+    {% if result.error %}
+    <p style="color: red;">{{ result.error }}</p>
+    {% else %}
+    <h3>Shortest Path:</h3>
+    <p>{{ result.path }}</p>
+
+    <h3>Total Distance:</h3>
+    <p>{{ result.total_distance }} km</p>
+    {% endif %}
+    {% endif %}
+
+</body>
+
+</html>
